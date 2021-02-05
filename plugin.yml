@@ -4,8 +4,3 @@ version: 1.0
 author: Garrett
 description: Test Description
 commands:
-    mycommand:
-    description: Tester command
-    usage: /runtest
-    permission: testplugin.runtest
-    permission-message: You don't have the testplugin.runtest permission.
