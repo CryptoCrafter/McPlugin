@@ -24,12 +24,17 @@ public class Main extends JavaPlugin implements Listener {
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (label.equalsIgnoreCase("test")) {
+        	Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "Test command has been executed!");
             if (sender instanceof Player) {
                 Player player = (Player) sender;
                 player.sendMessage("Test Successful!");
-            	Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "Test commant has been executed!");
                 return true;
             }
+            if (label.equalsIgnoreCase("consoletest")) {
+            	Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "Console Log test,!");
+                    return true;
+            }
+   
         }
         return false;
     }
