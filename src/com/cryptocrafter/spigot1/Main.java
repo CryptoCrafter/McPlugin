@@ -3,9 +3,10 @@ package com.cryptocrafter.spigot1;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class Main extends JavaPlugin {
+public class Main extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable(){
