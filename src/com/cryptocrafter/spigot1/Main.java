@@ -27,6 +27,7 @@ public class Main extends JavaPlugin implements Listener {
             if (sender instanceof Player) {
                 Player player = (Player) sender;
                 player.sendMessage("Test Successful!");
+            	Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "Test commant has been executed!");
                 return true;
             }
         }
