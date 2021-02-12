@@ -2,5 +2,5 @@ main: com.cryptocrafter.spigot1.Main
 name: TestPlugin
 version: 1.0
 author: Garrett
-description: Test Description
 commands:
+  Test:
