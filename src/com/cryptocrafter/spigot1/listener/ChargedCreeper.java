@@ -10,27 +10,45 @@ import org.bukkit.entity.Creeper;
 import org.bukkit.entity.EntityType;
 
 public class ChargedCreeper {
-	Random rand = new Random(); 
-    int rand1 = rand.nextInt(0, 4);
-	if(rand1 >= 5){
-	double min = 0.0;
-	double max = 10000;
-	World world = Bukkit.getWorld("world");
-	double x =ThreadLocalRandom.current().nextDouble(min, max);
-	double y = ThreadLocalRandom.current().nextDouble(min, max);
-	double z = ThreadLocalRandom.current().nextDouble(min, max);
-	Location location = new Location(world, x, y, z);
-	Location blockbellowcreeper = new Location(world, x,
-            y - 1, z);
-   
-    if(blockbellowcreeper != null){
-        int lightlevel = blockbellowcreeper.getBlock().getLightLevel();
-        if(lightlevel <= 6) {
-        	Creeper creeper = (Creeper)world.spawnEntity(location, EntityType.CREEPER);
-        	creeper.setPowered(true);
-        	return;
-	}
+	//Set up a  location for possible spawn
+	double min;
+	double max;
+	World world;
+	double x;
+	double y;
+	double z;
+	Location location;
+	Location blockbellowcreeper;
+	
+	public ChargedCreeper() {
+		 min = 0.0;
+		 max = 10000;
+		 world = Bukkit.getWorld("world");
+		 x =ThreadLocalRandom.current().nextDouble(min, max);
+		 y = ThreadLocalRandom.current().nextDouble(min, max);
+		 z = ThreadLocalRandom.current().nextDouble(min, max);
+		 location = new Location(world, x, y, z);
+		 blockbellowcreeper = new Location(world, x, y - 1, z);
+		
+		//Checks if lighting spawn conditions are met
+	    if(blockbellowcreeper != null){
+	        int lightlevel = blockbellowcreeper.getBlock().getLightLevel();
+	        if(lightlevel <= 6) {
+	        	//Does a random check for chance of spawn
+	        	int randmin = 0;
+	        	int randmax = 5;
+	        	Random rand = new Random(); 
+	            int rand1 = rand.nextInt((randmax - randmin) + 1) + randmin;
+	            if(rand1 == 4){
+	            	//Spawns mob
+	        	Creeper creeper = (Creeper)world.spawnEntity(location, EntityType.CREEPER);
+	        	creeper.setPowered(true);
+	        	return;
+	            }
 	        }
-			return;
+		}
+		return;
+	}
+   
 
-}}}
+}
