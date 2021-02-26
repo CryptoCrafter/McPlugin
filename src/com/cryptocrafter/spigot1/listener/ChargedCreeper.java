@@ -8,12 +8,15 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Creeper;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 
 public class ChargedCreeper {
 	//Sets up variables
-	double min;
-	double max;
+	int min;
+	int max;
+	int ymin;
+	int ymax;
 	World world;
 	double x;
 	double y;
@@ -22,11 +25,13 @@ public class ChargedCreeper {
 	Location blockbellowcreeper;
 	//Constructor
 	public ChargedCreeper() {
-		 min = 0.0;
-		 max = 10000;
+		 min = 0;
+		 max = 100;
+		 ymin = 0;
+		 ymax = 64;
 		 world = Bukkit.getWorld("world");
 		 x =ThreadLocalRandom.current().nextDouble(min, max);
-		 y = ThreadLocalRandom.current().nextDouble(min, max);
+		 y = ThreadLocalRandom.current().nextDouble(ymin, ymax);
 		 z = ThreadLocalRandom.current().nextDouble(min, max);
 		 location = new Location(world, x, y, z);
 		 blockbellowcreeper = new Location(world, x, y - 1, z);
@@ -43,8 +48,8 @@ public class ChargedCreeper {
 	            if(rand1 == 4){
 	            	//Spawns mob
 	            	Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "Creeper!");
-	        	Creeper creeper = (Creeper)world.spawnEntity(location, EntityType.CREEPER);
-	        	creeper.setPowered(true);
+	        	Entity entity = Bukkit.getWorld("world").spawnEntity(new Location(Bukkit.getWorld("world"),x, y, z), EntityType.CREEPER);
+	        	((Creeper) entity).setPowered(true);
 	        	return;
 	            }
 	        }
