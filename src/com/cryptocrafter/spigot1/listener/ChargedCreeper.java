@@ -10,52 +10,22 @@ import org.bukkit.World;
 import org.bukkit.entity.Creeper;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
-
-public class ChargedCreeper {
-	//Sets up variables
-	int min;
-	int max;
-	int ymin;
-	int ymax;
-	World world;
-	double x;
-	double y;
-	double z;
-	Location location;
-	Location blockbellowcreeper;
-	//Constructor
-	public ChargedCreeper() {
-		 min = 0;
-		 max = 100;
-		 ymin = 0;
-		 ymax = 64;
-		 world = Bukkit.getWorld("world");
-		 x =ThreadLocalRandom.current().nextDouble(min, max);
-		 y = ThreadLocalRandom.current().nextDouble(ymin, ymax);
-		 z = ThreadLocalRandom.current().nextDouble(min, max);
-		 location = new Location(world, x, y, z);
-		 blockbellowcreeper = new Location(world, x, y - 1, z);
-		
-		//Checks if lighting spawn conditions are met
-	    if(blockbellowcreeper != null){
-	        int lightlevel = blockbellowcreeper.getBlock().getLightLevel();
-	        if(lightlevel <= 9) {
-	        	//Does a random check for chance of spawn
-	        	int randmin = 0;
-	        	int randmax = 5;
-	        	Random rand = new Random(); 
-	            int rand1 = rand.nextInt((randmax - randmin) + 1) + randmin;
-	            if(rand1 == 4){
-	            	//Spawns mob
-	            	Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "Creeper!");
-	        	Entity entity = Bukkit.getWorld("world").spawnEntity(new Location(Bukkit.getWorld("world"),x, y, z), EntityType.CREEPER);
-	        	((Creeper) entity).setPowered(true);
-	        	return;
-	            }
-	        }
-		}
-		return;
-	}
-   
-
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.entity.CreatureSpawnEvent;
+public class ChargedCreeper implements Listener{
+@EventHandler
+public void onEnable() {
+	Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "Creeoer Spawn Enabled.!");
 }
+
+   public void onMobSpawn(CreatureSpawnEvent e) {
+	   if(e.getEntityType() == EntityType.CREEPER) {
+		   e.setCancelled(true);
+		   Creeper creeper = (Creeper) e.getEntity().getWorld().spawnEntity(e.getEntity().getLocation(), EntityType.CREEPER);
+		   creeper.setPowered(true);
+	   }
+   }
+}
+
+
