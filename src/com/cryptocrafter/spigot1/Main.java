@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.cryptocrafter.spigot1.commands.consoletest;
 import com.cryptocrafter.spigot1.commands.playertest;
 import com.cryptocrafter.spigot1.listener.ChargedCreeper;
 import com.cryptocrafter.spigot1.listener.JoinMessage;
@@ -23,7 +24,7 @@ public class Main extends JavaPlugin implements Listener {
     	getServer().getPluginManager().registerEvents(new ChargedCreeper(), this);
     	//Sets up Commands
 		getCommand( "playertest").setExecutor(new playertest());
-		getCommand( "consoletest").setExecutor(new playertest());
+		getCommand( "consoletest").setExecutor(new consoletest());
     }
 
     @Override

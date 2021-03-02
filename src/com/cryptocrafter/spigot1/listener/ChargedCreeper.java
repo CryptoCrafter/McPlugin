@@ -11,8 +11,9 @@ public class ChargedCreeper implements Listener{
 @EventHandler
    public void onMobSpawn(CreatureSpawnEvent e) {
 	   if(e.getEntityType() == EntityType.CREEPER) {
-		   e.setCancelled(true);
-		   Creeper creeper = (Creeper) e.getEntity().getWorld().spawnEntity(e.getEntity().getLocation(), EntityType.CREEPER);
+		   Creeper creeper = (Creeper) e.getEntity();
+		   //e.setCancelled(true);
+		   //Creeper creeper = (Creeper) e.getEntity().getWorld().spawnEntity(e.getEntity().getLocation(), EntityType.CREEPER);
 		   creeper.setPowered(true);
 		   Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "Creeper Spawn Enabled.!");
 	   }
