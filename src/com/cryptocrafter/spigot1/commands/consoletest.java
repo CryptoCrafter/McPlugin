@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 
 public class consoletest implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (label.equalsIgnoreCase("test")) {
+        if (label.equalsIgnoreCase("consoletest")) {
         	Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "Test command has been executed!");
             if (sender instanceof Player) {
                 Player player = (Player) sender;
