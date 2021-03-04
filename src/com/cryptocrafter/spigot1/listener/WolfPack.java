@@ -12,16 +12,17 @@ import org.bukkit.event.entity.CreatureSpawnEvent;
 public class WolfPack implements Listener {
 
 	@EventHandler
-	   public void onMobSpawn(CreatureSpawnEvent e) {
-		   if(e.getEntityType() == EntityType.WOLF) {
+	   public void onMobSpawn(CreatureSpawnEvent W) {
+		   if(W.getEntityType() == EntityType.WOLF) {
 			   //Wolf wolf = (Wolf) e.getEntity();
-			   Location loc = e.getLocation();
 			   //Wolf wolf = (Wolf) e.getEntity().getWorld().spawnEntity(e.getEntity().getLocation(), EntityType.WOLF);
-			   //e.setCancelled(true);
+			   W.setCancelled(true);
+			   Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.RED + "Wolf Spawn cancel.!");
 			   for(int i = 0; i<6; i++) {
-               Wolf wolf = (Wolf) e.getEntity().getWorld().spawnEntity(loc, EntityType.WOLF);
+				Location loc = W.getLocation();
+               Wolf wolf = (Wolf) W.getEntity().getWorld().spawnEntity(loc, EntityType.WOLF);
                wolf.setAngry(true);
-               e.setCancelled(true);
+               //W.setCancelled(true);
 			   Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "Wolf Spawn Tester.!");
 			   }
 			   }
