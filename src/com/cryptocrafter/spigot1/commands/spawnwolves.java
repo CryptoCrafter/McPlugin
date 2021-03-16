@@ -18,13 +18,15 @@ if (sender instanceof Player) {
  			   //Wolf wolf = (Wolf) e.getEntity().getWorld().spawnEntity(e.getEntity().getLocation(), EntityType.WOLF);
  			   World world = player.getWorld();
  			   Location loc = player.getLocation();
+ 			  //sender.sendMessage("Run");
  				   for(int i = 0; i<6; i++) {
                 Wolf madwolf = (Wolf) world.spawnEntity(loc, EntityType.WOLF);
                 madwolf.setAngry(true);
-                //madwolf.setTarget(player);
+                madwolf.setTarget(player);
                 madwolf.setCustomName("TesterFromCommand");
+                //sender.sendMessage("Spawn");
  				   } 
- return;
+ return true;
 }
             if(!(sender instanceof Player)) {
             	sender.sendMessage("You must be a player to run this command");
