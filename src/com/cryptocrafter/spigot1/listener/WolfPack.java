@@ -19,25 +19,25 @@ public class WolfPack implements Listener {
 	public void onMobSpawn(CreatureSpawnEvent e) {
 		if(e.getSpawnReason() == SpawnReason.NATURAL) {
 			Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.RED + "natrual");
-			if(e.getEntity().getType() == EntityType.WOLF) {
+			if(e.getEntityType() != EntityType.WOLF) {return;}
 			Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.BLUE + "IFSTATEMENTPASSED.!");
 			//Wolf wolf = (Wolf) e.getEntity();
 			//Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.RED + "Wolf Spawn cancel.!");
-			int randomInt = (int)(3.0 * Math.random());
-			System.out.println("Random int: " + randomInt);
-			if(randomInt == 1) {
+			//int randomInt = (int)(3.0 * Math.random());
+			//System.out.println("Random int: " + randomInt);
+			//if(randomInt == 1) {
 				//Wolf wolf = (Wolf) e.getEntity().getWorld().spawnEntity(e.getEntity().getLocation(), EntityType.WOLF);
 				World world = e.getEntity().getWorld();
 				Location loc = e.getLocation();
 				e.setCancelled(true);
 				for(int i = 0; i<5; i++) {
 					 //Location loc = e.getLocation();
-					Wolf wolf=(Wolf)world.spawnEntity(loc,EntityType.WOLF);
+					Wolf wolf=(Wolf) world.spawnEntity(loc,EntityType.WOLF);
 					 //Wolf madwolf = (Wolf) world.spawnEntity(loc, EntityType.WOLF);
 				   	 wolf.setAngry(true);
 				   	 wolf.setCustomName("Tester" + i);
 				   	 Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "Wolf Spawn Tester.!");
-			   }}}
+			   }
 			   }
 	   }
 	}
